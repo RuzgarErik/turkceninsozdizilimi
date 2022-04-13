@@ -11,6 +11,8 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://kit.fontawesome.com/a72ac28a2d.js" crossorigin="anonymous"></script>
     <link href="css/styles.css" rel="stylesheet" />
     <script src="js/index.js"></script>
     
@@ -44,7 +46,9 @@
     <!-- Page content-->
     <div class="container">
         <div class="col-xs-12">
+            
             <div id = "alert_placeholder"></div>
+            
                 <div class="col-md-12">
                     <div id="field">
                         <div id="field0">
@@ -69,7 +73,8 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-12">
-                        <button id="send" name="send" class="btn btn-primary">Hesapla</button>
+                        <button id="send" name="send" class="btn btn-primary"><span class="btn-label"><i class="fa-solid fa-spinner"></i> Hesapla</button>
+                        <button id="print" name="print" class="btn btn-primary"> <span class="btn-label"><i class="fa fa-print"></i> Yazdır</button>
                     </div>
                 </div>
             </div>

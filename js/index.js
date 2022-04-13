@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     var next = 0;
     $("#add-more").click(function(e) {
@@ -46,10 +47,10 @@ $(document).ready(function() {
 
 
 
-    $("#send").click(function(e) {
+$("#send").click(function(e) {
         console.log("gönder fonksiyonu başladı")
         var ele = document.getElementsByTagName('input');
-        const ogeler = []
+        var ogeler = new Array();
         for (i = 0; i < ele.length; i++) {
 
             // CHECK THE ELEMENT TYPE.
@@ -60,24 +61,31 @@ $(document).ready(function() {
 
             }
         }
-
+        localStorage.setItem('cumle', ogeler.join("_"));
         bootstrap_alert = function() {}
         bootstrap_alert.warning = function(message) {
             $('#alert_placeholder').html('<div class="alert alert-warning alert-dismissible fade show" role="alert"> '+message+' <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>')
         }
 
-
-
-
-
         console.log(permutator(ogeler));
         var sonuc = permutator(ogeler)
         bootstrap_alert.warning(sonuc.join("<br>") + "<br>");
-
-
+        localStorage.setItem('cikti', sonuc.join("\n"));
+    
 
 
     });
 
+    $("#print").click(function(e) {
+        window.jsPDF = window.jspdf.jsPDF;
+        const doc = new jsPDF();
+        let cikti = localStorage.getItem('cikti');
+        let cumle = localStorage.getItem('cumle');
+        doc.text(cikti, 10, 10);
+        doc.save(`${cumle}.pdf`);
+        localStorage.clear();
+
+
+    });
 
 });
