@@ -53,7 +53,6 @@ $("#send").click(function(e) {
         var ogeler = new Array();
         for (i = 0; i < ele.length; i++) {
 
-            // CHECK THE ELEMENT TYPE.
             if (ele[i].type == 'text') {
                 console.log('Value: ' + ele[i].value);
                 ogeler.push(ele[i].value);
@@ -64,7 +63,7 @@ $("#send").click(function(e) {
         localStorage.setItem('cumle', ogeler.join("_"));
         bootstrap_alert = function() {}
         bootstrap_alert.warning = function(message) {
-            $('#alert_placeholder').html('<div class="alert alert-warning alert-dismissible fade show" role="alert"> '+message+' <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>')
+            $('#alert_placeholder').html('<div id ="cikti" class="alert alert-warning alert-dismissible fade show" role="alert"> '+message+' <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>')
         }
 
         console.log(permutator(ogeler));
@@ -78,12 +77,35 @@ $("#send").click(function(e) {
 
     $("#print").click(function(e) {
         window.jsPDF = window.jspdf.jsPDF;
-        const doc = new jsPDF();
+
+        const options = 
+        {
+         orientation: 'p',
+         unit: 'mm',
+         format: 'a4',
+         putOnlyUsedFonts:true
+        };
+        
+        
+
+        const doc = new jsPDF(options);
+
         let cikti = localStorage.getItem('cikti');
         let cumle = localStorage.getItem('cumle');
-        doc.text(cikti, 10, 10);
-        doc.save(`${cumle}.pdf`);
-        localStorage.clear();
+
+        if(cikti){
+
+            doc.text(cikti, 10, 10);
+            doc.save(`${cumle}.pdf`);
+            localStorage.clear();
+
+        } else {
+            alert("PDF çıktısı almadan önce hesaplamanız gerekmektedir.")            
+
+
+        };
+
+
 
 
     });
